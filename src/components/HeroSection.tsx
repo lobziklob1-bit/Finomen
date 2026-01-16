@@ -50,13 +50,15 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Extended Logo */}
+          {/* Extended Logo with shimmer animation */}
           <div className="flex justify-center mb-8 fade-up">
-            <img
-              src={logoExtended}
-              alt="Финомен"
-              className="w-auto h-32 md:h-40 lg:h-48 object-contain"
-            />
+            <div className="relative logo-shimmer">
+              <img
+                src={logoExtended}
+                alt="Финомен"
+                className="w-auto h-32 md:h-40 lg:h-48 object-contain relative z-10"
+              />
+            </div>
           </div>
 
           {/* Title - elegant, not bold, using Patriciana */}
@@ -71,9 +73,12 @@ const HeroSection = () => {
             <span className="text-foreground/70">для вашего бизнеса</span>
           </p>
 
-          {/* Tagline - ghostly transparent white */}
-          <p className="text-lg md:text-xl font-patriciana italic text-foreground/20 mb-12 fade-up fade-up-delay-3">
-            «знак феноменальных побед»
+          {/* Horizontal divider */}
+          <div className="w-48 h-px bg-foreground/20 mx-auto mb-4 fade-up fade-up-delay-2" />
+
+          {/* Tagline - more visible, no quotes, no italic */}
+          <p className="text-lg md:text-xl font-patriciana text-foreground/35 mb-12 fade-up fade-up-delay-3">
+            знак феноменальных побед
           </p>
 
           {/* Form */}
@@ -107,11 +112,23 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator - no bounce animation */}
+      {/* Scroll indicator - animated arrow */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
         <span className="text-sm">Узнать больше</span>
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
-          <div className="w-1 h-2 bg-primary rounded-full" />
+        <div className="scroll-arrow">
+          <svg 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+            className="text-primary"
+          >
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
         </div>
       </div>
     </section>

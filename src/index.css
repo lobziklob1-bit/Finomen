@@ -164,9 +164,9 @@
     transform: translateY(0);
   }
 
-  /* Shining button animation */
+  /* Shining button animation - very smooth */
   .btn-shine {
-    @apply relative overflow-hidden font-semibold transition-all duration-300;
+    @apply relative overflow-hidden font-semibold transition-all duration-500;
     background: linear-gradient(
       145deg,
       hsl(43 74% 55%) 0%,
@@ -179,7 +179,7 @@
       inset 0 1px 0 hsla(0, 0%, 100%, 0.3),
       inset 0 -1px 0 hsla(0, 0%, 0%, 0.1);
     border: 1px solid hsla(43, 80%, 60%, 0.5);
-    animation: btn-glow 2s ease-in-out infinite;
+    animation: btn-glow 4s ease-in-out infinite;
   }
 
   .btn-shine::before {
@@ -192,10 +192,10 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      hsla(0, 0%, 100%, 0.4) 50%,
+      hsla(0, 0%, 100%, 0.3) 50%,
       transparent 100%
     );
-    animation: shine-sweep 3s ease-in-out infinite;
+    animation: shine-sweep 5s ease-in-out infinite;
   }
 
   .btn-shine:hover {
@@ -332,8 +332,37 @@
     }
   }
 
+  @keyframes scroll-bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(8px);
+    }
+  }
+
+  @keyframes logo-shimmer {
+    0% {
+      filter: brightness(1) drop-shadow(0 0 0 transparent);
+    }
+    50% {
+      filter: brightness(1.15) drop-shadow(0 0 30px hsla(43, 74%, 49%, 0.4));
+    }
+    100% {
+      filter: brightness(1) drop-shadow(0 0 0 transparent);
+    }
+  }
+
   .animate-float {
     animation: float 6s ease-in-out infinite;
+  }
+
+  .scroll-arrow {
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+
+  .logo-shimmer {
+    animation: logo-shimmer 4s ease-in-out infinite;
   }
 
   .animate-pulse-glow {
