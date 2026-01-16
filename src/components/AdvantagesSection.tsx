@@ -33,7 +33,7 @@ const AdvantagesSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title mb-4">
-            <span className="text-gradient-gold">Почему мы</span>
+            <span className="text-foreground">Почему мы</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Ваши интересы — наш приоритет, мы действуем решительно и быстро
@@ -50,7 +50,7 @@ const AdvantagesSection = () => {
                 {/* Icon container with glow */}
                 <div className="relative mx-auto mb-6 w-16 h-16">
                   <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative w-16 h-16 rounded-full bg-gradient-gold flex items-center justify-center">
+                  <div className="relative w-16 h-16 rounded-full golden-glass-icon flex items-center justify-center">
                     <advantage.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
                 </div>
