@@ -23,7 +23,7 @@ const services = [
     icon: Users,
     title: "Агентское предложение",
     description: "Программа пассивного дохода для партнёров",
-    details: "7,5% комиссии с каждой сделки",
+    details: "Половину комиссии с каждой сделки",
   },
 ];
 
@@ -39,8 +39,7 @@ const ServicesSection = () => {
             <span className="text-foreground">Наши услуги</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Мы разработали процесс таким образом, чтобы вы не тратили ни минуты
-            лишнего времени
+            Работаем быстро, комфортно, и главное — результат
           </p>
         </div>
 

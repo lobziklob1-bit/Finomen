@@ -29,8 +29,11 @@ const AboutSection = () => {
                     alt="Финомен"
                     className="w-48 h-48 object-contain mx-auto"
                   />
-                  <p className="text-center mt-6 font-display text-xl italic text-primary">
-                    «знак феноменальных побед»
+                  <h3 className="text-center mt-6 font-patriciana text-2xl font-bold text-foreground">
+                    Финомен
+                  </h3>
+                  <p className="text-center mt-2 font-patriciana text-lg text-foreground/30">
+                    знак феноменальных побед
                   </p>
                 </div>
               </div>

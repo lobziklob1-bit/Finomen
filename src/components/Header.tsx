@@ -5,7 +5,6 @@ import logo from "@/assets/logo.png";
 
 const navItems = [
   { label: "Услуги", href: "#services" },
-  { label: "Как мы работаем", href: "#process" },
   { label: "Преимущества", href: "#advantages" },
   { label: "О компании", href: "#about" },
   { label: "Контакты", href: "#contacts" },
@@ -55,7 +54,7 @@ const Header = () => {
               alt="Финомен"
               className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
             />
-            <span className="text-xl font-patriciana text-foreground hidden sm:inline">
+            <span className="text-xl font-patriciana font-bold text-foreground hidden sm:inline">
               ФИНОМЕН
             </span>
           </a>
@@ -74,28 +73,28 @@ const Header = () => {
           </nav>
 
           {/* Contact info and CTA Button */}
-          <div className="hidden lg:flex items-center gap-6">
-            {/* Phone */}
-            <a
-              href="tel:+79818060969"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Phone className="w-4 h-4" />
-              <span>+7 (981) 806-09-69</span>
-            </a>
-            
-            {/* Email */}
-            <a
-              href="mailto:finomen.bg@ya.ru"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Mail className="w-4 h-4" />
-              <span>finomen.bg@ya.ru</span>
-            </a>
+          <div className="hidden lg:flex items-center gap-4">
+            {/* Phone and Email stacked */}
+            <div className="flex flex-col items-end text-sm">
+              <a
+                href="tel:+79818060969"
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Phone className="w-3 h-3" />
+                <span>+7 (981) 806-09-69</span>
+              </a>
+              <a
+                href="mailto:finomen.bg@ya.ru"
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Mail className="w-3 h-3" />
+                <span>finomen.bg@ya.ru</span>
+              </a>
+            </div>
             
             <Button
               onClick={() => scrollToSection("#contacts")}
-              className="btn-gold px-6 rounded-xl"
+              className="btn-gold px-6 rounded-xl h-10 flex items-center justify-center"
             >
               Оставить заявку
             </Button>
