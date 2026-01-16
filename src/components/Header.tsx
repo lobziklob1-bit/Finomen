@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
 
@@ -55,7 +55,7 @@ const Header = () => {
               alt="Финомен"
               className="w-10 h-10 object-contain group-hover:scale-110 transition-transform"
             />
-            <span className="text-xl font-bold text-gradient-gold hidden sm:inline">
+            <span className="text-xl font-patriciana text-foreground hidden sm:inline">
               ФИНОМЕН
             </span>
           </a>
@@ -73,8 +73,26 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+          {/* Contact info and CTA Button */}
+          <div className="hidden lg:flex items-center gap-6">
+            {/* Phone */}
+            <a
+              href="tel:+79818060969"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Phone className="w-4 h-4" />
+              <span>+7 (981) 806-09-69</span>
+            </a>
+            
+            {/* Email */}
+            <a
+              href="mailto:finomen.bg@ya.ru"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              <span>finomen.bg@ya.ru</span>
+            </a>
+            
             <Button
               onClick={() => scrollToSection("#contacts")}
               className="btn-gold px-6 rounded-xl"
@@ -109,6 +127,25 @@ const Header = () => {
                   {item.label}
                 </button>
               ))}
+              
+              {/* Mobile contact info */}
+              <div className="flex flex-col gap-2 pt-4 border-t border-border">
+                <a
+                  href="tel:+79818060969"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  <Phone className="w-4 h-4" />
+                  <span>+7 (981) 806-09-69</span>
+                </a>
+                <a
+                  href="mailto:finomen.bg@ya.ru"
+                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>finomen.bg@ya.ru</span>
+                </a>
+              </div>
+              
               <Button
                 onClick={() => scrollToSection("#contacts")}
                 className="btn-gold w-full mt-4 h-12 rounded-xl"

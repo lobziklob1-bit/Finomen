@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import logo from "@/assets/logo.png";
+import logoExtended from "@/assets/logo-extended.png";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -50,29 +50,29 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Logo */}
+          {/* Extended Logo */}
           <div className="flex justify-center mb-8 fade-up">
             <img
-              src={logo}
+              src={logoExtended}
               alt="Финомен"
-              className="w-24 h-24 md:w-32 md:h-32 object-contain animate-float"
+              className="w-auto h-32 md:h-40 lg:h-48 object-contain"
             />
           </div>
 
-          {/* Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-4 tracking-tight fade-up fade-up-delay-1">
-            <span className="text-gradient-gold">ФИНОМЕН</span>
+          {/* Title - elegant, not bold, using Patriciana */}
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-patriciana font-normal mb-4 tracking-wide fade-up fade-up-delay-1">
+            <span className="text-foreground">ФИНОМЕН</span>
           </h1>
 
-          {/* Subtitle */}
+          {/* Subtitle - white */}
           <p className="text-xl md:text-2xl lg:text-3xl font-light text-foreground/90 mb-4 fade-up fade-up-delay-2">
             Банковские гарантии и тендерное сопровождение
             <br />
-            <span className="text-muted-foreground">для вашего бизнеса</span>
+            <span className="text-foreground/70">для вашего бизнеса</span>
           </p>
 
-          {/* Tagline */}
-          <p className="text-lg md:text-xl font-display italic text-primary mb-12 fade-up fade-up-delay-3">
+          {/* Tagline - ghostly transparent white */}
+          <p className="text-lg md:text-xl font-patriciana italic text-foreground/20 mb-12 fade-up fade-up-delay-3">
             «знак феноменальных побед»
           </p>
 
@@ -95,7 +95,7 @@ const HeroSection = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-gold h-14 text-lg rounded-xl"
+                className="btn-shine h-14 text-lg rounded-xl"
               >
                 {isSubmitting ? "Отправка..." : "Получить консультацию"}
               </Button>
@@ -107,8 +107,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground animate-bounce">
+      {/* Scroll indicator - no bounce animation */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground">
         <span className="text-sm">Узнать больше</span>
         <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex justify-center pt-2">
           <div className="w-1 h-2 bg-primary rounded-full" />

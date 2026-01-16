@@ -36,7 +36,7 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title mb-4">
-            <span className="text-gradient-gold">Наши услуги</span>
+            <span className="text-foreground">Наши услуги</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Мы разработали процесс таким образом, чтобы вы не тратили ни минуты
@@ -52,7 +52,7 @@ const ServicesSection = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                <div className="flex-shrink-0 w-14 h-14 rounded-2xl golden-glass-icon flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                   <service.icon className="w-7 h-7 text-primary-foreground" />
                 </div>
                 <div>
@@ -62,7 +62,7 @@ const ServicesSection = () => {
                   <p className="text-muted-foreground mb-2">
                     {service.description}
                   </p>
-                  <p className="text-sm text-primary font-medium">
+                  <p className="text-sm text-foreground/70 font-medium">
                     {service.details}
                   </p>
                 </div>

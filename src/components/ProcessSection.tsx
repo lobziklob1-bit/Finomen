@@ -40,7 +40,7 @@ const ProcessSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title mb-4">
-            <span className="text-gradient-gold">Как мы работаем</span>
+            <span className="text-foreground">Как мы работаем</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Работаем быстро, комфортно, и главное — результат
@@ -58,9 +58,9 @@ const ProcessSection = () => {
                 <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />
               )}
               
-              <div className="glass-card p-6 text-center h-full hover:border-primary/50 transition-all duration-500 group-hover:-translate-y-2">
-                {/* Number badge */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 text-xs font-bold text-primary bg-background px-3 py-1 rounded-full border border-primary/30">
+              <div className="glass-card p-6 pt-8 text-center h-full hover:border-primary/50 transition-all duration-500 group-hover:-translate-y-2">
+                {/* Number badge - expanded for visibility */}
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-sm font-bold text-primary-foreground golden-glass-icon px-4 py-2 rounded-full">
                   {step.number}
                 </div>
                 
