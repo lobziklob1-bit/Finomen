@@ -58,9 +58,9 @@ const ProcessSection = () => {
                 <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />
               )}
               
-              <div className="glass-card p-6 pt-8 text-center h-full hover:border-primary/50 transition-all duration-500 group-hover:-translate-y-2">
+              <div className="glass-card p-6 pt-12 text-center h-full hover:border-primary/50 transition-all duration-500 group-hover:-translate-y-2">
                 {/* Number badge - expanded for visibility */}
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 text-sm font-bold text-primary-foreground golden-glass-icon px-5 py-3 rounded-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-sm font-bold text-primary-foreground golden-glass-icon px-5 py-2.5 rounded-full">
                   {step.number}
                 </div>
                 

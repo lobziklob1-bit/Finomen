@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="flex items-center gap-3">
             <img src={logo} alt="Финомен" className="w-10 h-10 object-contain" />
             <div>
-              <span className="text-lg font-bold text-gradient-gold">ФИНОМЕН</span>
+              <span className="text-lg font-patriciana text-gradient-gold">ФИНОМЕН</span>
               <p className="text-xs text-muted-foreground">ИП Терентьева О.А.</p>
             </div>
           </div>
