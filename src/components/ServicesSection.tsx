@@ -1,4 +1,5 @@
 import { Shield, FileCheck, Briefcase, Users } from "lucide-react";
+import { ScrollAnimation } from "@/hooks/use-scroll-animation";
 
 const services = [
   {
@@ -34,39 +35,41 @@ const ServicesSection = () => {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[150px]" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="section-title mb-4">
-            <span className="text-foreground">Наши предложения</span>
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Работаем быстро, комфортно, и главное — результат
-          </p>
-        </div>
+        <ScrollAnimation>
+          <div className="text-center mb-16">
+            <h2 className="section-title mb-4">
+              <span className="text-foreground">Наши предложения</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Работаем быстро, комфортно, и главное — результат
+            </p>
+          </div>
+        </ScrollAnimation>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="glass-card p-8 group hover:scale-[1.02] transition-all duration-500"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-14 h-14 rounded-2xl golden-glass-icon flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <service.icon className="w-7 h-7 text-primary-foreground" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-2">
-                    {service.description}
-                  </p>
-                  <p className="text-sm text-foreground/70 font-medium">
-                    {service.details}
-                  </p>
+            <ScrollAnimation key={service.title} delay={index * 100}>
+              <div
+                className="glass-card p-8 group hover:scale-[1.02] transition-all duration-500 h-full"
+              >
+                <div className="flex items-start gap-5">
+                  <div className="flex-shrink-0 w-14 h-14 rounded-2xl golden-glass-icon flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <service.icon className="w-7 h-7 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-2">
+                      {service.description}
+                    </p>
+                    <p className="text-sm text-foreground/70 font-medium">
+                      {service.details}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollAnimation>
           ))}
         </div>
       </div>
