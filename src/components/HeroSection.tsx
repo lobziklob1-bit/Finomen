@@ -100,7 +100,7 @@ const HeroSection = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-shine h-14 text-lg rounded-xl"
+                className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-300"
               >
                 {isSubmitting ? "Отправка..." : "Получить консультацию"}
               </Button>
@@ -109,6 +109,9 @@ const HeroSection = () => {
               Нажимая кнопку, вы соглашаетесь на обработку персональных данных
             </p>
           </form>
+
+          {/* Increased spacing before scroll indicator */}
+          <div className="mt-16"></div>
         </div>
       </div>
 

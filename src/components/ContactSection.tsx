@@ -132,7 +132,7 @@ const ContactSection = () => {
                 <div className="relative">
                   <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-muted-foreground" />
                   <Textarea
-                    placeholder="Краткий комментарий (опционально)"
+                    placeholder="Краткий комментарий"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     className="pl-12 min-h-[100px] bg-secondary/50 border-glass-border text-lg placeholder:text-muted-foreground/60 focus:border-primary focus:ring-primary/20 resize-none"

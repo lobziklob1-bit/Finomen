@@ -36,7 +36,7 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="section-title mb-4">
-            <span className="text-foreground">Наши услуги</span>
+            <span className="text-foreground">Наши предложения</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Работаем быстро, комфортно, и главное — результат
