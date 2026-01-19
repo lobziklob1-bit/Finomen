@@ -100,7 +100,7 @@ const HeroSection = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-300"
+                className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-[5s]"
               >
                 {isSubmitting ? "Отправка..." : "Получить консультацию"}
               </Button>
