@@ -35,7 +35,7 @@ const AdvantagesSection = () => {
         <ScrollAnimation>
           <div className="text-center mb-16">
             <h2 className="section-title mb-4">
-              <span className="text-foreground">Почему мы</span>
+              <span className="text-foreground">Наши преимущества</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
               Ваши интересы — наш приоритет, мы действуем решительно и быстро
@@ -43,11 +43,11 @@ const AdvantagesSection = () => {
           </div>
         </ScrollAnimation>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-stretch">
           {advantages.map((advantage, index) => (
-            <ScrollAnimation key={advantage.title} delay={index * 100}>
+            <ScrollAnimation key={advantage.title} delay={index * 100} className="h-full">
               <div className="group relative h-full">
-                <div className="glass-card p-8 h-full text-center hover:bg-primary/5 transition-all duration-500 group-hover:scale-105">
+                <div className="glass-card p-8 h-full text-center hover:bg-primary/5 transition-all duration-500 group-hover:scale-105 flex flex-col">
                   {/* Icon container with glow */}
                   <div className="relative mx-auto mb-6 w-16 h-16">
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -59,7 +59,7 @@ const AdvantagesSection = () => {
                   <h3 className="text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
                     {advantage.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
                     {advantage.description}
                   </p>
                 </div>
