@@ -50,18 +50,18 @@ const ProcessSection = () => {
           </div>
         </ScrollAnimation>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto items-stretch">
           {steps.map((step, index) => (
-            <ScrollAnimation key={step.number} delay={index * 150}>
-              <div className="relative group h-full">
+            <ScrollAnimation key={step.number} delay={index * 150} className="h-full">
+              <div className="relative group h-full flex flex-col">
                 {/* Connector line for desktop */}
                 {index < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />
                 )}
                 
-                <div className="glass-card p-6 pt-12 text-center h-full hover:border-primary/50 transition-all duration-500 group-hover:-translate-y-2">
+                <div className="glass-card p-6 pt-12 text-center h-full hover:border-primary/50 transition-all duration-500 group-hover:-translate-y-2 flex flex-col flex-grow">
                   {/* Number badge - expanded for visibility */}
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-sm font-bold text-primary-foreground golden-glass-icon px-5 py-2.5 rounded-full">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 text-sm font-bold text-primary-foreground golden-glass-icon px-5 pt-[0.925rem] pb-2.5 rounded-full">
                     {step.number}
                   </div>
                   
@@ -74,7 +74,7 @@ const ProcessSection = () => {
                   <h3 className="text-xl font-semibold mb-3 text-foreground">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
                     {step.description}
                   </p>
                 </div>

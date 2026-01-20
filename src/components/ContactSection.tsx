@@ -1,20 +1,35 @@
-import { useState } from "react";
-import { Phone, Mail, MapPin, User, MessageSquare } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Phone, Mail, MapPin, User, MessageSquare, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { ScrollAnimation } from "@/hooks/use-scroll-animation";
+import { supabase } from "@/integrations/supabase/client";
+
+const generateCaptcha = () => {
+  const num1 = Math.floor(Math.random() * 10) + 1;
+  const num2 = Math.floor(Math.random() * 10) + 1;
+  return { question: `${num1} + ${num2} = ?`, answer: num1 + num2 };
+};
 
 const ContactSection = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [comment, setComment] = useState("");
+  const [captchaInput, setCaptchaInput] = useState("");
+  const [captcha, setCaptcha] = useState(generateCaptcha);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const refreshCaptcha = useCallback(() => {
+    setCaptcha(generateCaptcha());
+    setCaptchaInput("");
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
     if (!phone.trim()) {
       toast({
         title: "Введите номер телефона",
@@ -22,8 +37,33 @@ const ContactSection = () => {
       });
       return;
     }
+
+    const userAnswer = parseInt(captchaInput, 10);
+    if (isNaN(userAnswer) || userAnswer !== captcha.answer) {
+      toast({
+        title: "Неверный ответ на капчу",
+        description: "Попробуйте ещё раз",
+        variant: "destructive",
+      });
+      refreshCaptcha();
+      return;
+    }
+
     setIsSubmitting(true);
-    setTimeout(() => {
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-telegram', {
+        body: {
+          name: name.trim(),
+          phone: phone.trim(),
+          comment: comment.trim(),
+          captchaAnswer: userAnswer,
+          captchaExpected: captcha.answer,
+        },
+      });
+
+      if (error) throw error;
+
       toast({
         title: "Заявка отправлена!",
         description: "Мы свяжемся с вами в ближайшее время",
@@ -31,8 +71,17 @@ const ContactSection = () => {
       setName("");
       setPhone("");
       setComment("");
+      refreshCaptcha();
+    } catch (error) {
+      console.error('Error sending form:', error);
+      toast({
+        title: "Ошибка отправки",
+        description: "Попробуйте позже",
+        variant: "destructive",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1000);
+    }
   };
 
   return (
@@ -147,6 +196,25 @@ const ContactSection = () => {
                       onChange={(e) => setComment(e.target.value)}
                       className="pl-12 min-h-[100px] bg-secondary/50 border-glass-border text-lg placeholder:text-muted-foreground/60 focus:border-primary focus:ring-primary/20 resize-none"
                     />
+                  </div>
+
+                  {/* Captcha field */}
+                  <div className="relative">
+                    <ShieldCheck className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                    <Input
+                      type="text"
+                      placeholder={captcha.question}
+                      value={captchaInput}
+                      onChange={(e) => setCaptchaInput(e.target.value)}
+                      className="pl-12 h-14 bg-secondary/50 border-glass-border text-lg placeholder:text-muted-foreground/60 focus:border-primary focus:ring-primary/20"
+                    />
+                    <button
+                      type="button"
+                      onClick={refreshCaptcha}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 text-sm text-primary hover:underline"
+                    >
+                      Обновить
+                    </button>
                   </div>
                   
                   <Button
