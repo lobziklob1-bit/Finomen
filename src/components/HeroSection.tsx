@@ -1,34 +1,13 @@
-import { useState } from "react";
-import { Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import logoExtended from "@/assets/logo-extended.png";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
-  const [phone, setPhone] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!phone.trim()) {
-      toast({
-        title: "Введите номер телефона",
-        variant: "destructive",
-      });
-      return;
+  const scrollToContacts = () => {
+    const contactsSection = document.getElementById("contacts");
+    if (contactsSection) {
+      contactsSection.scrollIntoView({ behavior: "smooth" });
     }
-    setIsSubmitting(true);
-    setTimeout(() => {
-      toast({
-        title: "Заявка отправлена!",
-        description: "Мы свяжемся с вами в ближайшее время",
-      });
-      setPhone("");
-      setIsSubmitting(false);
-    }, 1000);
   };
 
   return (
@@ -81,34 +60,15 @@ const HeroSection = () => {
             знак феноменальных побед
           </p>
 
-          {/* Form */}
-          <form
-            onSubmit={handleSubmit}
-            className="glass-card max-w-md mx-auto p-6 md:p-8 fade-up fade-up-delay-4"
-          >
-            <div className="flex flex-col gap-4">
-              <div className="relative">
-                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <Input
-                  type="tel"
-                  placeholder="+7 (___) ___-__-__"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="pl-12 h-14 bg-secondary/50 border-glass-border text-lg placeholder:text-muted-foreground/60 focus:border-primary focus:ring-primary/20"
-                />
-              </div>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-[5s]"
-              >
-                {isSubmitting ? "Отправка..." : "Получить консультацию"}
-              </Button>
-            </div>
-            <p className="text-xs text-muted-foreground mt-4">
-              Нажимая кнопку, вы соглашаетесь на обработку персональных данных
-            </p>
-          </form>
+          {/* CTA Button */}
+          <div className="fade-up fade-up-delay-4">
+            <Button
+              onClick={scrollToContacts}
+              className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-300 px-8"
+            >
+              Получить консультацию
+            </Button>
+          </div>
 
           {/* Increased spacing before scroll indicator */}
           <div className="mt-16"></div>
