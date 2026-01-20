@@ -64,7 +64,7 @@ const HeroSection = () => {
           <div className="fade-up fade-up-delay-4">
             <Button
               onClick={scrollToContacts}
-              className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-500 px-8"
+              className="btn-shine h-14 text-lg rounded-xl hover:scale-105 transition-transform duration-5000 px-8"
             >
               Получить консультацию
             </Button>
