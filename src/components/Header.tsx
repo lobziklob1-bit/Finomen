@@ -77,11 +77,11 @@ const Header = () => {
             {/* Phone and Email stacked */}
             <div className="flex flex-col items-end text-sm">
               <a
-                href="tel:+79818060969"
+                href="tel:+79817626363"
                 className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors"
               >
                 <Phone className="w-3 h-3" />
-                <span>+7 (981) 806-09-69</span>
+                <span>+7(981) 762-63-63</span>
               </a>
               <a
                 href="mailto:finomen.bg@ya.ru"
@@ -130,11 +130,11 @@ const Header = () => {
               {/* Mobile contact info */}
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
                 <a
-                  href="tel:+79818060969"
+                  href="tel:+79817626363"
                   className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   <Phone className="w-4 h-4" />
-                  <span>+7 (981) 806-09-69</span>
+                  <span>+7(981) 762-63-63</span>
                 </a>
                 <a
                   href="mailto:finomen.bg@ya.ru"
