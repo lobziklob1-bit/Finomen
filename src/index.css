@@ -402,4 +402,9 @@
     background-size: 200% 100%;
     animation: shimmer 3s infinite;
   }
+
+  .equal-height-cards {
+    grid-auto-rows: 1fr !important;
+}
+
 }
