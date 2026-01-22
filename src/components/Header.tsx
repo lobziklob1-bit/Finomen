@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 
 const navItems = [
-  { label: "Услуги", href: "#services" },
-  { label: "Преимущества", href: "#advantages" },
-  { label: "О компании", href: "#about" },
-  { label: "Контакты", href: "#contacts" },
+  { label: "Услуги", href: "#services", isSection: true },
+  { label: "Преимущества", href: "#advantages", isSection: true },
+  { label: "О компании", href: "#about", isSection: true },
+  { label: "Контакты", href: "#contacts", isSection: true },
+  { label: "Агентам", href: "/agents", isSection: false },
 ];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,10 +26,55 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+  const handleNavClick = (item: typeof navItems[0]) => {
+    setIsMobileMenuOpen(false);
+    
+    if (item.isSection) {
+      // If we're on home page, scroll to section
+      if (location.pathname === "/") {
+        const element = document.querySelector(item.href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        // Navigate to home page first, then scroll
+        navigate("/");
+        setTimeout(() => {
+          const element = document.querySelector(item.href);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 100);
+      }
+    } else {
+      // Navigate to another page
+      navigate(item.href);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate("/");
+    }
+  };
+
+  const scrollToContacts = () => {
+    if (location.pathname === "/") {
+      const element = document.querySelector("#contacts");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.querySelector("#contacts");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
     }
     setIsMobileMenuOpen(false);
   };
@@ -42,12 +91,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <a
-            href="#"
+            href="/"
             className="flex items-center gap-3 group"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+            onClick={handleLogoClick}
           >
             <img
               src={logo}
@@ -64,7 +110,7 @@ const Header = () => {
             {navItems.map((item) => (
               <button
                 key={item.href}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleNavClick(item)}
                 className="text-muted-foreground hover:text-primary transition-colors text-sm font-medium animated-underline"
               >
                 {item.label}
@@ -93,7 +139,7 @@ const Header = () => {
             </div>
             
             <Button
-              onClick={() => scrollToSection("#contacts")}
+              onClick={scrollToContacts}
               className="btn-gold px-6 rounded-xl h-10 flex items-center justify-center"
             >
               Оставить заявку
@@ -120,7 +166,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <button
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleNavClick(item)}
                   className="text-foreground hover:text-primary transition-colors text-lg font-medium text-left py-2"
                 >
                   {item.label}
@@ -146,7 +192,7 @@ const Header = () => {
               </div>
               
               <Button
-                onClick={() => scrollToSection("#contacts")}
+                onClick={scrollToContacts}
                 className="btn-gold w-full mt-4 h-12 rounded-xl"
               >
                 Оставить заявку
