@@ -2,8 +2,9 @@ import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Users, Building2, Handshake, ArrowRight, CheckCircle2, TrendingUp } from "lucide-react";
+import { ExternalLink, Users, Building2, Handshake, CheckCircle2 } from "lucide-react";
 import { ScrollAnimation } from "@/hooks/use-scroll-animation";
+import InteractionDiagram from "@/components/InteractionDiagram";
 
 const Agents = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -181,94 +182,7 @@ const Agents = () => {
             </h2>
           </ScrollAnimation>
 
-          {/* Diagram */}
-          <div className="max-w-5xl mx-auto">
-            <div className="glass-card p-8 md:p-12">
-              {/* Top commission line */}
-              <ScrollAnimation direction="fade" delay={100}>
-                <div className="flex items-center justify-center mb-8">
-                  <div className="flex items-center gap-4 text-primary">
-                    <span className="text-lg font-medium">АГЕНТ</span>
-                    <div className="flex-1 min-w-[100px] md:min-w-[200px] border-t-2 border-dashed border-primary/50 relative">
-                      <span className="absolute -top-6 left-1/2 -translate-x-1/2 text-sm whitespace-nowrap">7,5% комиссия</span>
-                    </div>
-                    <span className="text-lg font-medium">ФИНОМЕН</span>
-                  </div>
-                </div>
-              </ScrollAnimation>
-
-              {/* Main diagram */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                {/* Agent & Client */}
-                <ScrollAnimation direction="left" delay={200}>
-                  <div className="flex flex-col items-center gap-6">
-                    <div className="glass-card p-6 text-center w-full">
-                      <Users className="w-10 h-10 text-primary mx-auto mb-3" />
-                      <h3 className="text-xl font-semibold mb-2">АГЕНТ</h3>
-                      <p className="text-sm text-muted-foreground">рекомендация</p>
-                    </div>
-                    <ArrowRight className="w-6 h-6 text-primary/50 rotate-90 md:hidden" />
-                    <div className="glass-card p-6 text-center w-full">
-                      <Handshake className="w-10 h-10 text-primary mx-auto mb-3" />
-                      <h3 className="text-xl font-semibold mb-2">КЛИЕНТ</h3>
-                      <p className="text-sm text-muted-foreground">взаимодействие</p>
-                    </div>
-                  </div>
-                </ScrollAnimation>
-
-                {/* Center - Finomen */}
-                <ScrollAnimation direction="up" delay={300}>
-                  <div className="flex flex-col items-center">
-                    <div className="hidden md:flex items-center justify-center w-full mb-4">
-                      <ArrowRight className="w-8 h-8 text-primary" />
-                    </div>
-                    <div className="golden-glass-icon p-8 rounded-3xl text-center">
-                      <TrendingUp className="w-12 h-12 text-background mx-auto mb-3" />
-                      <h3 className="text-2xl font-bold font-patriciana text-background">ФИНОМЕН</h3>
-                      <p className="text-sm text-background/70 mt-2">переговоры</p>
-                    </div>
-                    <div className="hidden md:flex items-center justify-center w-full mt-4">
-                      <ArrowRight className="w-8 h-8 text-primary" />
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-4 text-center">получение БГ</p>
-                  </div>
-                </ScrollAnimation>
-
-                {/* Banks */}
-                <ScrollAnimation direction="right" delay={400}>
-                  <div className="flex flex-col items-center gap-3">
-                    <ArrowRight className="w-6 h-6 text-primary/50 rotate-90 md:hidden mb-4" />
-                    {[1, 2, 3, 4].map((num) => (
-                      <div key={num} className="glass-card px-6 py-3 text-center w-full flex items-center gap-3">
-                        <Building2 className="w-5 h-5 text-primary" />
-                        <span className="text-muted-foreground">Банк<sup>{num}</sup></span>
-                      </div>
-                    ))}
-                    <p className="text-muted-foreground text-center">...</p>
-                    <div className="glass-card px-6 py-3 text-center w-full flex items-center gap-3">
-                      <Building2 className="w-5 h-5 text-primary" />
-                      <span className="text-muted-foreground">Банк<sup>n</sup></span>
-                    </div>
-                  </div>
-                </ScrollAnimation>
-              </div>
-
-              {/* Bottom - Best bank */}
-              <ScrollAnimation direction="fade" delay={500}>
-                <div className="mt-8 pt-8 border-t border-border/50">
-                  <div className="flex items-center justify-center gap-4">
-                    <span className="text-muted-foreground">оплата</span>
-                    <ArrowRight className="w-5 h-5 text-primary" />
-                    <div className="glass-card px-6 py-4 text-center">
-                      <Building2 className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <h4 className="font-semibold">БАНК,</h4>
-                      <p className="text-sm text-muted-foreground">где самое выгодное предложение</p>
-                    </div>
-                  </div>
-                </div>
-              </ScrollAnimation>
-            </div>
-          </div>
+          <InteractionDiagram />
         </div>
       </section>
 
