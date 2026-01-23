@@ -1,26 +1,12 @@
-import { useEffect, useRef } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Users, Building2, Handshake, CheckCircle2 } from "lucide-react";
 import { ScrollAnimation } from "@/hooks/use-scroll-animation";
 import InteractionDiagram from "@/components/InteractionDiagram";
+import ParallaxFrameSequence from "@/components/ParallaxFrameSequence";
 
 const Agents = () => {
-  const parallaxRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (parallaxRef.current) {
-        const scrolled = window.scrollY;
-        parallaxRef.current.style.transform = `translateY(${scrolled * 0.3}px)`;
-      }
-    };
-    
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const processSteps = [
     {
       step: 1,
@@ -62,25 +48,15 @@ const Agents = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
+      {/* Parallax Frame Sequence Background */}
+      <ParallaxFrameSequence />
+      
       <Header />
       
       {/* Hero Section with Parallax */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Parallax Background */}
-        <div 
-          ref={parallaxRef}
-          className="absolute inset-0 z-0"
-          style={{
-            background: `
-              radial-gradient(ellipse at 30% 20%, hsla(43, 74%, 49%, 0.08) 0%, transparent 50%),
-              radial-gradient(ellipse at 70% 80%, hsla(43, 74%, 49%, 0.05) 0%, transparent 50%),
-              linear-gradient(180deg, hsl(222 47% 4%) 0%, hsl(222 47% 8%) 50%, hsl(222 47% 6%) 100%)
-            `
-          }}
-        />
-        
-        {/* Animated particles */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* Animated particles overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-2 h-2 rounded-full bg-primary/20 animate-float" style={{ animationDelay: '0s' }} />
           <div className="absolute top-1/3 right-1/3 w-3 h-3 rounded-full bg-primary/15 animate-float" style={{ animationDelay: '1s' }} />
           <div className="absolute bottom-1/4 left-1/3 w-2 h-2 rounded-full bg-primary/20 animate-float" style={{ animationDelay: '2s' }} />
