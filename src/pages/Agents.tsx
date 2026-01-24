@@ -297,11 +297,11 @@ const Agents = () => {
                 Зарегистрируйтесь в личном кабинете и начните получать пассивный доход с каждой сделки
               </p>
               <Button 
-                className="btn-shine px-10 py-6 text-lg rounded-xl inline-flex items-center gap-2"
+                className="btn-shine px-6 sm:px-10 py-5 sm:py-6 text-base sm:text-lg rounded-xl inline-flex items-center gap-2 w-full sm:w-auto justify-center"
                 onClick={() => window.open('#', '_blank')}
               >
-                <ExternalLink className="w-5 h-5" />
-                Перейти в личный кабинет
+                <ExternalLink className="w-5 h-5 flex-shrink-0" />
+                <span className="whitespace-nowrap">Перейти в личный кабинет</span>
               </Button>
             </div>
           </ScrollAnimation>
