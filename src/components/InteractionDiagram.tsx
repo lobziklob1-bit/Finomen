@@ -54,42 +54,42 @@ const InteractionDiagram = () => {
           <text x="130" y="345" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">КЛИЕНТ</text>
         </g>
 
-        {/* ================= ФИНОМЕН (центр, на линии с клиентом) ================= */}
+        {/* ================= ФИНОМЕН (центр, на линии с клиентом, сдвинут правее) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
            style={{ transitionDelay: "300ms" }}>
-          <rect x="320" y="230" width="200" height="160" rx="20"
+          <rect x="380" y="230" width="200" height="160" rx="20"
             fill="url(#goldGradient)" />
-          <text x="420" y="295" textAnchor="middle" fontSize="36">📈</text>
-          <text x="420" y="345" textAnchor="middle" fontSize="24" fontWeight="700">ФИНОМЕН</text>
+          <text x="480" y="295" textAnchor="middle" fontSize="36">📈</text>
+          <text x="480" y="345" textAnchor="middle" fontSize="24" fontWeight="700">ФИНОМЕН</text>
         </g>
 
-        {/* ================= Стрелка Агент → Клиент (рекомендация) ================= */}
+        {/* ================= Г-образная стрелка Агент → Клиент (рекомендация) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "200ms" }}>
           <line x1="130" y1="170" x2="130" y2="245"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="65" y="215" fontSize="13" fill="rgba(255,255,255,0.7)">
+          <text x="60" y="215" fontSize="13" fill="rgba(255,255,255,0.7)" transform="rotate(-90, 60, 215)">
             рекомендация
           </text>
         </g>
 
-        {/* ================= Клиент ↔ ФИНОМЕН (взаимодействие / получение БГ) ================= */}
+        {/* ================= Клиент ↔ ФИНОМЕН (взаимодействие / получение БГ) - увеличенное расстояние ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "400ms" }}>
-          {/* Клиент → Финомен */}
-          <line x1="210" y1="295" x2="315" y2="295"
+          {/* Клиент → Финомен (взаимодействие) */}
+          <line x1="210" y1="280" x2="375" y2="280"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="235" y="285" fontSize="12" fill="rgba(255,255,255,0.7)">
+          <text x="270" y="270" fontSize="12" fill="rgba(255,255,255,0.7)">
             взаимодействие
           </text>
 
-          {/* Финомен → Клиент (получение БГ) */}
-          <line x1="315" y1="325" x2="210" y2="325"
+          {/* Финомен → Клиент (получение БГ) - увеличено расстояние */}
+          <line x1="375" y1="340" x2="210" y2="340"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="235" y="345" fontSize="12" fill="rgba(255,255,255,0.7)">
+          <text x="270" y="360" fontSize="12" fill="rgba(255,255,255,0.7)">
             получение БГ
           </text>
         </g>
@@ -98,21 +98,21 @@ const InteractionDiagram = () => {
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "500ms" }}>
           <path
-            d="M320 270 L250 270 L250 170 L215 170"
+            d="M380 270 L280 270 L280 170 L215 170"
             fill="none"
             stroke="hsl(43, 74%, 49%)"
             strokeWidth="2"
             markerEnd="url(#arrowHeadGold)"
           />
-          <text x="255" y="255" fontSize="13" fill="hsl(43, 74%, 49%)">
+          <text x="285" y="255" fontSize="13" fill="hsl(43, 74%, 49%)">
             7,5% комиссия агента
           </text>
         </g>
 
-        {/* ================= "переговоры" справа от Финомен ================= */}
+        {/* ================= "переговоры" справа от Финомен (повернуто на -90) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "550ms" }}>
-          <text x="545" y="315" fontSize="14" fill="hsl(43, 74%, 49%)">
+          <text x="600" y="310" fontSize="14" fill="hsl(43, 74%, 49%)" transform="rotate(-90, 600, 310)">
             переговоры
           </text>
         </g>
@@ -123,7 +123,7 @@ const InteractionDiagram = () => {
              className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}
              style={{ transitionDelay: `${600 + i * 80}ms` }}>
             <rect
-              x="750"
+              x="780"
               y={80 + i * 85}
               width="150"
               height="60"
@@ -132,16 +132,16 @@ const InteractionDiagram = () => {
               stroke="hsl(43, 74%, 49%)"
               strokeWidth="1"
             />
-            <text x="790" y={118 + i * 85} fontSize="20">🏦</text>
-            <text x="840" y={118 + i * 85} fill="white" fontSize="15">
+            <text x="820" y={118 + i * 85} fontSize="20">🏦</text>
+            <text x="870" y={118 + i * 85} fill="white" fontSize="15">
               Банк<tspan baselineShift="super" fontSize="10">{i === 4 ? "n" : i + 1}</tspan>
             </text>
 
             {/* Стрелки от "переговоры" к банкам */}
             <line
-              x1="620"
+              x1="630"
               y1="310"
-              x2="745"
+              x2="775"
               y2={110 + i * 85}
               stroke="rgba(255,255,255,0.5)"
               strokeWidth="1.5"
@@ -153,11 +153,11 @@ const InteractionDiagram = () => {
         {/* ================= БАНК С НАИЛУЧШИМ ПРЕДЛОЖЕНИЕМ (под Финомен) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
            style={{ transitionDelay: "900ms" }}>
-          <rect x="320" y="480" width="200" height="80" rx="16"
+          <rect x="380" y="480" width="200" height="80" rx="16"
             fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
-          <text x="360" y="528" fontSize="24">🏦</text>
-          <text x="420" y="528" fill="white" fontSize="16" fontWeight="600">БАНК</text>
-          <text x="420" y="575" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
+          <text x="420" y="528" fontSize="24">🏦</text>
+          <text x="480" y="528" fill="white" fontSize="16" fontWeight="600">БАНК</text>
+          <text x="480" y="575" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
             С наилучшим предложением
           </text>
         </g>
@@ -165,7 +165,7 @@ const InteractionDiagram = () => {
         {/* ================= Стрелка от Финомен к Банку с наилучшим предложением ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "850ms" }}>
-          <line x1="420" y1="390" x2="420" y2="475"
+          <line x1="480" y1="390" x2="480" y2="475"
             stroke="rgba(255,255,255,0.6)" strokeWidth="1.5"
             markerEnd="url(#arrowHeadWhite)" strokeDasharray="5,3" />
         </g>
@@ -174,7 +174,7 @@ const InteractionDiagram = () => {
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "1000ms" }}>
           <path
-            d="M130 370 L130 520 L315 520"
+            d="M130 370 L130 520 L375 520"
             fill="none"
             stroke="rgba(255,255,255,0.8)"
             strokeWidth="2"
