@@ -95,19 +95,22 @@ const InteractionDiagram = () => {
         </g>
 
         {/* ================= Г-образная стрелка Финомен → Агент (7,5% комиссия) ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "500ms" }}>
-          <path
-            d="M380 270 L280 270 L280 170 L215 170"
-            fill="none"
-            stroke="hsl(43, 74%, 49%)"
-            strokeWidth="2"
-            markerEnd="url(#arrowHeadGold)"
-          />
-          <text x="285" y="255" fontSize="13" fill="hsl(43, 74%, 49%)">
-            7,5% комиссия агента
-          </text>
-        </g>
+        <g
+  className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+  style={{ transitionDelay: "500ms" }}
+>
+  <path
+    d="M380 270 L280 270 L215 170"
+    fill="none"
+    stroke="hsl(43, 74%, 49%)"
+    strokeWidth="2"
+    markerEnd="url(#arrowHeadGold)"
+  />
+  <text x="285" y="255" fontSize="13" fill="hsl(43, 74%, 49%)">
+    7,5% комиссия агента
+  </text>
+</g>
+
 
         {/* ================= "переговоры" справа от Финомен (повернуто на -90) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
