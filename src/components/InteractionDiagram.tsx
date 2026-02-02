@@ -14,251 +14,94 @@ const InteractionDiagram = () => {
   }, [isVisible]);
 
   return (
-    <div ref={ref} className="w-full max-w-5xl mx-auto">
-      <svg
-        viewBox="0 0 1000 600"
-        className="w-full h-auto"
-        style={{ minHeight: "450px" }}
-      >
+    <div ref={ref} className="w-full max-w-6xl mx-auto">
+      <svg viewBox="0 0 1200 600" className="w-full h-auto">
         <defs>
-          {/* Gradients */}
-          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="hsl(43, 74%, 49%)" />
-            <stop offset="100%" stopColor="hsl(43, 74%, 60%)" />
-          </linearGradient>
-          
-          <linearGradient id="glassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
-            <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
-          </linearGradient>
-
-          {/* Glow filter */}
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          {/* Arrow markers */}
-          <marker
-            id="arrowHead"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="5"
-            orient="auto"
-          >
-            <path
-              d="M0,0 L10,5 L0,10 L3,5 Z"
-              fill="hsl(43, 74%, 49%)"
-            />
-          </marker>
-          
-          <marker
-            id="arrowHeadWhite"
-            markerWidth="10"
-            markerHeight="10"
-            refX="9"
-            refY="5"
-            orient="auto"
-          >
-            <path
-              d="M0,0 L10,5 L0,10 L3,5 Z"
-              fill="rgba(255,255,255,0.8)"
-            />
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 Z" fill="white" />
           </marker>
         </defs>
 
-        {/* Agent Node - Top Left */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '0ms' }}>
-          {/* Gold corner accent */}
-          <path
-            d="M50 80 L50 50 L120 50"
-            fill="none"
-            stroke="hsl(43, 74%, 49%)"
-            strokeWidth="3"
-          />
-          <rect
-            x="50"
-            y="50"
-            width="160"
-            height="150"
-            rx="16"
-            fill="url(#glassGradient)"
-            stroke="hsl(43, 74%, 49%)"
-            strokeWidth="1.5"
-            opacity="0.8"
-          />
-          <circle cx="130" cy="110" r="30" fill="rgba(100,150,200,0.3)" />
-          <text x="130" y="118" textAnchor="middle" fill="rgba(100,150,200,0.8)" fontSize="32">👤</text>
-          <text x="130" y="165" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">АГЕНТ</text>
-          <text x="130" y="185" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="12">рекомендация</text>
+        {/* АГЕНТ */}
+        <g transform="translate(120,80)">
+          <text x="0" y="0" fill="white" fontSize="20" fontWeight="700">АГЕНТ</text>
         </g>
 
-        {/* Client Node - Below Agent */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '200ms' }}>
-          <rect
-            x="50"
-            y="280"
-            width="160"
-            height="120"
-            rx="16"
-            fill="url(#glassGradient)"
-            stroke="hsl(43, 74%, 49%)"
-            strokeWidth="1.5"
-            opacity="0.8"
-          />
-          <text x="130" y="335" textAnchor="middle" fill="hsl(43, 74%, 49%)" fontSize="32">🤝</text>
-          <text x="130" y="375" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">КЛИЕНТ</text>
+        {/* КЛИЕНТ */}
+        <g transform="translate(120,300)">
+          <text x="0" y="0" fill="white" fontSize="20" fontWeight="700">КЛИЕНТ</text>
         </g>
 
-        {/* Arrow: Agent to Client (down) */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '300ms' }}>
-          <line
-            x1="130"
-            y1="200"
-            x2="130"
-            y2="275"
-            stroke="rgba(255,255,255,0.8)"
-            strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)"
-          />
+        {/* ФИНОМЕН */}
+        <g transform="translate(480,260)">
+          <text x="0" y="0" fill="white" fontSize="22" fontWeight="700">ФИНОМЕН</text>
         </g>
 
-        {/* Finomen Node - Center */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '400ms' }}>
-          <rect
-            x="400"
-            y="180"
-            width="200"
-            height="180"
-            rx="20"
-            fill="url(#goldGradient)"
-            filter="url(#glow)"
-          />
-          <text x="500" y="260" textAnchor="middle" fill="hsl(222, 47%, 11%)" fontSize="36">📈</text>
-          <text x="500" y="310" textAnchor="middle" fill="hsl(222, 47%, 11%)" fontSize="24" fontWeight="700" fontFamily="Patriciana, serif">ФИНОМЕН</text>
-        </g>
-
-        {/* Arrow: Agent to Finomen (with bend) */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '450ms' }}>
-          <path
-            d="M210 125 L320 125 L320 270 L395 270"
-            fill="none"
-            stroke="rgba(255,255,255,0.8)"
-            strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)"
-          />
-        </g>
-
-        {/* Arrow: Client to Finomen */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '500ms' }}>
-          <line
-            x1="210"
-            y1="340"
-            x2="395"
-            y2="290"
-            stroke="rgba(255,255,255,0.8)"
-            strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)"
-          />
-        </g>
-
-        {/* "переговоры" text - rotated vertically */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '550ms' }}>
-          <text 
-            x="640" 
-            y="270" 
-            textAnchor="middle" 
-            fill="hsl(43, 74%, 49%)" 
-            fontSize="16"
-            transform="rotate(90, 640, 270)"
-            fontStyle="italic"
-          >
-            переговоры
+        {/* Банк с лучшим предложением */}
+        <g transform="translate(480,380)">
+          <text x="0" y="0" fill="white" fontSize="18">БАНК</text>
+          <text x="-40" y="24" fill="rgba(255,255,255,0.6)" fontSize="14">
+            где самое выгодное
+          </text>
+          <text x="-18" y="42" fill="rgba(255,255,255,0.6)" fontSize="14">
+            предложение
           </text>
         </g>
 
-        {/* Banks - Right side stacked vertically */}
+        {/* --- СТРЕЛКИ С ПОДПИСЯМИ --- */}
+
+        {/* рекомендация (клиент → агент) */}
+        <line x1="120" y1="290" x2="120" y2="110" stroke="white" markerEnd="url(#arrow)" />
+        <text x="90" y="200" fill="white" fontSize="14" transform="rotate(-90 90 200)">
+          рекомендация
+        </text>
+
+        {/* 7,5% комиссия (финомeн → агент) */}
+        <path
+          d="M480 240 L300 240 L300 100 L180 100"
+          fill="none"
+          stroke="white"
+          markerEnd="url(#arrow)"
+        />
+        <text x="300" y="90" fill="white" fontSize="14">7,5% комиссия</text>
+
+        {/* взаимодействие (клиент ↔ финомeн) */}
+        <line x1="180" y1="260" x2="440" y2="260" stroke="white" markerEnd="url(#arrow)" />
+        <text x="280" y="245" fill="white" fontSize="14">взаимодействие</text>
+
+        {/* получение БГ (финомeн → клиент) */}
+        <line x1="440" y1="280" x2="180" y2="280" stroke="white" markerEnd="url(#arrow)" />
+        <text x="270" y="300" fill="white" fontSize="14">получение БГ</text>
+
+        {/* оплата (клиент → банк лучший) */}
+        <path
+          d="M120 320 L120 420 L440 420"
+          fill="none"
+          stroke="white"
+          markerEnd="url(#arrow)"
+        />
+        <text x="200" y="410" fill="white" fontSize="14">оплата</text>
+
+        {/* переговоры (финомeн → банки) */}
+        <text x="650" y="270" fill="white" fontSize="14" transform="rotate(-90 650 270)">
+          переговоры
+        </text>
+
         {[0, 1, 2, 3, 4].map((i) => (
-          <g key={i} 
-             className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-             style={{ transitionDelay: `${600 + i * 80}ms` }}>
-            <rect
-              x="750"
-              y={60 + i * 95}
-              width="160"
-              height="70"
-              rx="14"
-              fill="url(#glassGradient)"
-              stroke="hsl(43, 74%, 49%)"
-              strokeWidth="1"
-              opacity="0.8"
-            />
-            <text x="795" y={103 + i * 95} fill="hsl(43, 74%, 49%)" fontSize="22">🏦</text>
-            <text x="850" y={103 + i * 95} fill="rgba(255,255,255,0.9)" fontSize="16">
-              Банк<tspan baselineShift="super" fontSize="11">{i === 4 ? 'n' : i + 1}</tspan>
-            </text>
-            
-            {/* Arrow: Finomen to Bank */}
+          <g key={i}>
             <line
-              x1="600"
-              y1="270"
-              x2="745"
-              y2={95 + i * 95}
-              stroke="rgba(255,255,255,0.6)"
-              strokeWidth="1.5"
-              markerEnd="url(#arrowHeadWhite)"
+              x1="540"
+              y1="260"
+              x2="900"
+              y2={160 + i * 50}
+              stroke="white"
+              markerEnd="url(#arrow)"
             />
+            <text x="910" y={165 + i * 50} fill="white" fontSize="16">
+              Банк<tspan baselineShift="super">{i + 1}</tspan>
+            </text>
           </g>
         ))}
-
-        {/* Best Bank - Bottom Center */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '1000ms' }}>
-          <rect
-            x="420"
-            y="440"
-            width="160"
-            height="70"
-            rx="14"
-            fill="url(#glassGradient)"
-            stroke="hsl(43, 74%, 49%)"
-            strokeWidth="1"
-            opacity="0.8"
-          />
-          <text x="465" y="483" fill="hsl(43, 74%, 49%)" fontSize="22">🏦</text>
-          <text x="530" y="483" fill="rgba(255,255,255,0.9)" fontSize="16">Банк</text>
-          
-          {/* Label below */}
-          <text x="500" y="540" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="14">
-            С наиболее выгодным
-          </text>
-          <text x="500" y="560" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="14">
-            предложением
-          </text>
-        </g>
-
-        {/* Arrow: Best Bank back to Agent */}
-        <g className={`transition-all duration-1000 ${isAnimating ? 'opacity-100' : 'opacity-0'}`}
-           style={{ transitionDelay: '1100ms' }}>
-          <path
-            d="M420 475 L130 475 L130 205"
-            fill="none"
-            stroke="rgba(255,255,255,0.8)"
-            strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)"
-          />
-        </g>
       </svg>
     </div>
   );
