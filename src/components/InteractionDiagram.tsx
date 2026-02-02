@@ -38,7 +38,7 @@ const InteractionDiagram = () => {
           <rect x="50" y="50" width="160" height="150" rx="16"
             fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
           <circle cx="130" cy="110" r="30" fill="rgba(100,150,200,0.3)" />
-          <text x="130" y="118" textAnchor="middle" fill="rgba(100,150,200,0.8)" fontSize="32">👤</text>
+          <text x="130" y="118" textAnchor="middle" fontSize="32">👤</text>
           <text x="130" y="165" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">АГЕНТ</text>
         </g>
 
@@ -47,7 +47,7 @@ const InteractionDiagram = () => {
            style={{ transitionDelay: "200ms" }}>
           <rect x="50" y="280" width="160" height="120" rx="16"
             fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
-          <text x="130" y="335" textAnchor="middle" fill="hsl(43, 74%, 49%)" fontSize="32">🤝</text>
+          <text x="130" y="335" textAnchor="middle" fontSize="32">🤝</text>
           <text x="130" y="375" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">КЛИЕНТ</text>
         </g>
 
@@ -74,7 +74,7 @@ const InteractionDiagram = () => {
           </text>
         </g>
 
-        {/* Клиент ↔ ФИНОМЕН (взаимодействие / получение БГ) */}
+        {/* Клиент ↔ ФИНОМЕН */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "350ms" }}>
           <line x1="210" y1="260" x2="395" y2="260"
@@ -107,14 +107,31 @@ const InteractionDiagram = () => {
           </text>
         </g>
 
-        {/* ФИНОМЕН → БАНКИ (переговоры) */}
+        {/* ================= БАНКИ (справа) ================= */}
         <text x="640" y="270" fontSize="14" fill="hsl(43, 74%, 49%)"
           transform="rotate(90 640 270)">
           переговоры
         </text>
 
         {[0, 1, 2, 3, 4].map((i) => (
-          <g key={i}>
+          <g key={i}
+             className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+             style={{ transitionDelay: `${600 + i * 80}ms` }}>
+            <rect
+              x="750"
+              y={60 + i * 95}
+              width="160"
+              height="70"
+              rx="14"
+              fill="url(#glassGradient)"
+              stroke="hsl(43, 74%, 49%)"
+              strokeWidth="1"
+            />
+            <text x="795" y={103 + i * 95} fontSize="22">🏦</text>
+            <text x="850" y={103 + i * 95} fill="white" fontSize="16">
+              Банк<tspan baselineShift="super" fontSize="11">{i === 4 ? "n" : i + 1}</tspan>
+            </text>
+
             <line
               x1="600"
               y1="270"
@@ -126,21 +143,6 @@ const InteractionDiagram = () => {
             />
           </g>
         ))}
-
-        {/* Клиент → лучший банк (оплата) */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "900ms" }}>
-          <path
-            d="M130 400 L130 475 L420 475"
-            fill="none"
-            stroke="rgba(255,255,255,0.8)"
-            strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)"
-          />
-          <text x="200" y="460" fontSize="13" fill="rgba(255,255,255,0.7)">
-            оплата
-          </text>
-        </g>
 
       </svg>
     </div>
