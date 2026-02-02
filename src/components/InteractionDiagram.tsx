@@ -15,7 +15,7 @@ const InteractionDiagram = () => {
 
   return (
     <div ref={ref} className="w-full max-w-5xl mx-auto">
-      <svg viewBox="0 0 1000 600" className="w-full h-auto" style={{ minHeight: "450px" }}>
+      <svg viewBox="0 0 1000 650" className="w-full h-auto" style={{ minHeight: "500px" }}>
         <defs>
           <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="hsl(43, 74%, 49%)" />
@@ -30,119 +30,160 @@ const InteractionDiagram = () => {
           <marker id="arrowHeadWhite" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
             <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="rgba(255,255,255,0.8)" />
           </marker>
+          
+          <marker id="arrowHeadGold" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="hsl(43, 74%, 49%)" />
+          </marker>
         </defs>
 
-        {/* ================= АГЕНТ ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}>
-          <path d="M50 80 L50 50 L120 50" fill="none" stroke="hsl(43, 74%, 49%)" strokeWidth="3" />
-          <rect x="50" y="50" width="160" height="150" rx="16"
+        {/* ================= АГЕНТ (верхний левый) ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
+          <rect x="50" y="50" width="160" height="120" rx="16"
             fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
-          <circle cx="130" cy="110" r="30" fill="rgba(100,150,200,0.3)" />
-          <text x="130" y="118" textAnchor="middle" fontSize="32">👤</text>
-          <text x="130" y="165" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">АГЕНТ</text>
+          <circle cx="130" cy="95" r="25" fill="rgba(100,150,200,0.3)" />
+          <text x="130" y="103" textAnchor="middle" fontSize="28">👤</text>
+          <text x="130" y="145" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">АГЕНТ</text>
         </g>
 
-        {/* ================= КЛИЕНТ ================= */}
+        {/* ================= КЛИЕНТ (на одной линии с Финомен) ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}
+           style={{ transitionDelay: "150ms" }}>
+          <rect x="50" y="250" width="160" height="120" rx="16"
+            fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
+          <text x="130" y="300" textAnchor="middle" fontSize="28">🤝</text>
+          <text x="130" y="345" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">КЛИЕНТ</text>
+        </g>
+
+        {/* ================= ФИНОМЕН (центр, на линии с клиентом) ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
+           style={{ transitionDelay: "300ms" }}>
+          <rect x="320" y="230" width="200" height="160" rx="20"
+            fill="url(#goldGradient)" />
+          <text x="420" y="295" textAnchor="middle" fontSize="36">📈</text>
+          <text x="420" y="345" textAnchor="middle" fontSize="24" fontWeight="700">ФИНОМЕН</text>
+        </g>
+
+        {/* ================= Стрелка Агент → Клиент (рекомендация) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "200ms" }}>
-          <rect x="50" y="280" width="160" height="120" rx="16"
-            fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
-          <text x="130" y="335" textAnchor="middle" fontSize="32">🤝</text>
-          <text x="130" y="375" textAnchor="middle" fill="white" fontSize="18" fontWeight="700">КЛИЕНТ</text>
-        </g>
-
-        {/* ================= ФИНОМЕН ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "400ms" }}>
-          <rect x="400" y="180" width="200" height="180" rx="20"
-            fill="url(#goldGradient)" />
-          <text x="500" y="260" textAnchor="middle" fontSize="36">📈</text>
-          <text x="500" y="310" textAnchor="middle" fontSize="24" fontWeight="700">ФИНОМЕН</text>
-        </g>
-
-        {/* ================= СТРЕЛКИ ================= */}
-
-        {/* Клиент → Агент (рекомендация) */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "300ms" }}>
-          <line x1="130" y1="280" x2="130" y2="200"
+          <line x1="130" y1="170" x2="130" y2="245"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="105" y="240" fontSize="13" fill="rgba(255,255,255,0.7)"
-            transform="rotate(-90 105 240)">
+          <text x="65" y="215" fontSize="13" fill="rgba(255,255,255,0.7)">
             рекомендация
           </text>
         </g>
 
-        {/* Клиент ↔ ФИНОМЕН */}
+        {/* ================= Клиент ↔ ФИНОМЕН (взаимодействие / получение БГ) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "350ms" }}>
-          <line x1="210" y1="260" x2="395" y2="260"
+           style={{ transitionDelay: "400ms" }}>
+          {/* Клиент → Финомен */}
+          <line x1="210" y1="295" x2="315" y2="295"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="260" y="245" fontSize="13" fill="rgba(255,255,255,0.7)">
+          <text x="235" y="285" fontSize="12" fill="rgba(255,255,255,0.7)">
             взаимодействие
           </text>
 
-          <line x1="395" y1="290" x2="210" y2="290"
+          {/* Финомен → Клиент (получение БГ) */}
+          <line x1="315" y1="325" x2="210" y2="325"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="260" y="310" fontSize="13" fill="rgba(255,255,255,0.7)">
+          <text x="235" y="345" fontSize="12" fill="rgba(255,255,255,0.7)">
             получение БГ
           </text>
         </g>
 
-        {/* Агент → ФИНОМЕН (7,5% комиссия) */}
+        {/* ================= Г-образная стрелка Финомен → Агент (7,5% комиссия) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "450ms" }}>
+           style={{ transitionDelay: "500ms" }}>
           <path
-            d="M210 125 L320 125 L320 220 L395 220"
+            d="M320 270 L250 270 L250 170 L215 170"
             fill="none"
-            stroke="rgba(255,255,255,0.8)"
+            stroke="hsl(43, 74%, 49%)"
             strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)"
+            markerEnd="url(#arrowHeadGold)"
           />
-          <text x="260" y="110" fontSize="13" fill="rgba(255,255,255,0.7)">
-            7,5% комиссия
+          <text x="255" y="255" fontSize="13" fill="hsl(43, 74%, 49%)">
+            7,5% комиссия агента
+          </text>
+        </g>
+
+        {/* ================= "переговоры" справа от Финомен ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+           style={{ transitionDelay: "550ms" }}>
+          <text x="545" y="315" fontSize="14" fill="hsl(43, 74%, 49%)">
+            переговоры
           </text>
         </g>
 
         {/* ================= БАНКИ (справа) ================= */}
-        <text x="640" y="270" fontSize="14" fill="hsl(43, 74%, 49%)"
-          transform="rotate(90 640 270)">
-          переговоры
-        </text>
-
         {[0, 1, 2, 3, 4].map((i) => (
           <g key={i}
-             className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+             className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}
              style={{ transitionDelay: `${600 + i * 80}ms` }}>
             <rect
               x="750"
-              y={60 + i * 95}
-              width="160"
-              height="70"
+              y={80 + i * 85}
+              width="150"
+              height="60"
               rx="14"
               fill="url(#glassGradient)"
               stroke="hsl(43, 74%, 49%)"
               strokeWidth="1"
             />
-            <text x="795" y={103 + i * 95} fontSize="22">🏦</text>
-            <text x="850" y={103 + i * 95} fill="white" fontSize="16">
-              Банк<tspan baselineShift="super" fontSize="11">{i === 4 ? "n" : i + 1}</tspan>
+            <text x="790" y={118 + i * 85} fontSize="20">🏦</text>
+            <text x="840" y={118 + i * 85} fill="white" fontSize="15">
+              Банк<tspan baselineShift="super" fontSize="10">{i === 4 ? "n" : i + 1}</tspan>
             </text>
 
+            {/* Стрелки от "переговоры" к банкам */}
             <line
-              x1="600"
-              y1="270"
+              x1="620"
+              y1="310"
               x2="745"
-              y2={95 + i * 95}
-              stroke="rgba(255,255,255,0.6)"
+              y2={110 + i * 85}
+              stroke="rgba(255,255,255,0.5)"
               strokeWidth="1.5"
               markerEnd="url(#arrowHeadWhite)"
             />
           </g>
         ))}
+
+        {/* ================= БАНК С НАИЛУЧШИМ ПРЕДЛОЖЕНИЕМ (под Финомен) ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+           style={{ transitionDelay: "900ms" }}>
+          <rect x="320" y="480" width="200" height="80" rx="16"
+            fill="url(#glassGradient)" stroke="hsl(43, 74%, 49%)" strokeWidth="1.5" />
+          <text x="360" y="528" fontSize="24">🏦</text>
+          <text x="420" y="528" fill="white" fontSize="16" fontWeight="600">БАНК</text>
+          <text x="420" y="575" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
+            С наилучшим предложением
+          </text>
+        </g>
+
+        {/* ================= Стрелка от Финомен к Банку с наилучшим предложением ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+           style={{ transitionDelay: "850ms" }}>
+          <line x1="420" y1="390" x2="420" y2="475"
+            stroke="rgba(255,255,255,0.6)" strokeWidth="1.5"
+            markerEnd="url(#arrowHeadWhite)" strokeDasharray="5,3" />
+        </g>
+
+        {/* ================= Г-образная стрелка Клиент → Банк (оплата) ================= */}
+        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+           style={{ transitionDelay: "1000ms" }}>
+          <path
+            d="M130 370 L130 520 L315 520"
+            fill="none"
+            stroke="rgba(255,255,255,0.8)"
+            strokeWidth="2"
+            markerEnd="url(#arrowHeadWhite)"
+          />
+          <text x="145" y="510" fontSize="13" fill="rgba(255,255,255,0.7)">
+            оплата
+          </text>
+        </g>
 
       </svg>
     </div>
