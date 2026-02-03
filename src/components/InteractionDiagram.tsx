@@ -69,7 +69,7 @@ const InteractionDiagram = () => {
           <line x1="130" y1="170" x2="130" y2="245"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)" />
-          <text x="130" y="185" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
+          <text x="130" y="162" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
             рекомендация
           </text>
         </g>
@@ -115,7 +115,7 @@ const InteractionDiagram = () => {
         {/* ================= "переговоры" справа от Финомен (повернуто на -90) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "550ms" }}>
-          <text x="630" y="310" textAnchor="middle" fontSize="14" fill="hsl(43, 74%, 49%)" transform="rotate(-90, 630, 310)">
+          <text x="590" y="310" textAnchor="middle" fontSize="14" fill="hsl(43, 74%, 49%)" transform="rotate(-90, 590, 310)">
             переговоры
           </text>
         </g>
