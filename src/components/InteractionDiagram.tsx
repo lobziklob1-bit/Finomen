@@ -126,7 +126,7 @@ const InteractionDiagram = () => {
              className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}`}
              style={{ transitionDelay: `${600 + i * 80}ms` }}>
             <rect
-              x="780"
+              x="680"
               y={80 + i * 85}
               width="150"
               height="60"
@@ -135,16 +135,16 @@ const InteractionDiagram = () => {
               stroke="hsl(43, 74%, 49%)"
               strokeWidth="1"
             />
-            <text x="820" y={118 + i * 85} fontSize="20">🏦</text>
-            <text x="870" y={118 + i * 85} fill="white" fontSize="15">
+            <text x="720" y={118 + i * 85} fontSize="20">🏦</text>
+            <text x="770" y={118 + i * 85} fill="white" fontSize="15">
               Банк<tspan baselineShift="super" fontSize="10">{i === 4 ? "n" : i + 1}</tspan>
             </text>
 
             {/* Стрелки от "переговоры" к банкам */}
             <line
-              x1="630"
+              x1="600"
               y1="310"
-              x2="775"
+              x2="675"
               y2={110 + i * 85}
               stroke="rgba(255,255,255,0.5)"
               strokeWidth="1.5"
