@@ -36,6 +36,60 @@ const InteractionDiagram = () => {
           </marker>
         </defs>
 
+        <style>
+          {`
+            @keyframes drawLine {
+              from {
+                stroke-dashoffset: var(--line-length);
+              }
+              to {
+                stroke-dashoffset: 0;
+              }
+            }
+            .animated-line {
+              stroke-dasharray: var(--line-length);
+              stroke-dashoffset: var(--line-length);
+            }
+            .animated-line.animate {
+              animation: drawLine 0.8s ease-out forwards;
+            }
+            @keyframes drawPath {
+              from {
+                stroke-dashoffset: var(--path-length);
+              }
+              to {
+                stroke-dashoffset: 0;
+              }
+            }
+            .animated-path {
+              stroke-dasharray: var(--path-length);
+              stroke-dashoffset: var(--path-length);
+            }
+            .animated-path.animate {
+              animation: drawPath 1s ease-out forwards;
+            }
+          `}
+        </style>
+        <defs>
+          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="hsl(43, 74%, 49%)" />
+            <stop offset="100%" stopColor="hsl(43, 74%, 60%)" />
+          </linearGradient>
+
+          <linearGradient id="glassGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
+            <stop offset="100%" stopColor="rgba(255,255,255,0.02)" />
+          </linearGradient>
+
+          <marker id="arrowHeadWhite" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="rgba(255,255,255,0.8)" />
+          </marker>
+          
+          <marker id="arrowHeadGold" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+            <path d="M0,0 L10,5 L0,10 L3,5 Z" fill="hsl(43, 74%, 49%)" />
+          </marker>
+        </defs>
+
         {/* ================= АГЕНТ (верхний левый) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"}`}>
           <rect x="50" y="50" width="160" height="120" rx="16"
@@ -64,49 +118,63 @@ const InteractionDiagram = () => {
         </g>
 
         {/* ================= Г-образная стрелка Агент → Клиент (рекомендация) ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+        <g className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "200ms" }}>
           <line x1="130" y1="170" x2="130" y2="245"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)" />
-          <text x="130" y="162" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
+            markerEnd="url(#arrowHeadWhite)"
+            className={`animated-line ${isAnimating ? "animate" : ""}`}
+            style={{ "--line-length": "80", animationDelay: "300ms" } as React.CSSProperties} />
+          <text x="130" y="162" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)"
+            className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+            style={{ transitionDelay: "500ms" }}>
             рекомендация
           </text>
         </g>
 
-        {/* ================= Клиент ↔ ФИНОМЕН (взаимодействие / получение БГ) - увеличенное расстояние ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+        {/* ================= Клиент ↔ ФИНОМЕН (взаимодействие / получение БГ) ================= */}
+        <g className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
            style={{ transitionDelay: "400ms" }}>
           {/* Клиент → Финомен (взаимодействие) */}
           <line x1="210" y1="280" x2="375" y2="280"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)" />
-          <text x="292" y="268" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
+            markerEnd="url(#arrowHeadWhite)"
+            className={`animated-line ${isAnimating ? "animate" : ""}`}
+            style={{ "--line-length": "170", animationDelay: "500ms" } as React.CSSProperties} />
+          <text x="292" y="268" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)"
+            className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+            style={{ transitionDelay: "700ms" }}>
             взаимодействие
           </text>
 
-          {/* Финомен → Клиент (получение БГ) - увеличено расстояние */}
+          {/* Финомен → Клиент (получение БГ) */}
           <line x1="375" y1="340" x2="210" y2="340"
             stroke="rgba(255,255,255,0.8)" strokeWidth="2"
-            markerEnd="url(#arrowHeadWhite)" />
-          <text x="292" y="356" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)">
+            markerEnd="url(#arrowHeadWhite)"
+            className={`animated-line ${isAnimating ? "animate" : ""}`}
+            style={{ "--line-length": "170", animationDelay: "600ms" } as React.CSSProperties} />
+          <text x="292" y="356" textAnchor="middle" fontSize="12" fill="rgba(255,255,255,0.7)"
+            className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+            style={{ transitionDelay: "800ms" }}>
             получение БГ
           </text>
         </g>
 
         {/* ================= Г-образная стрелка Финомен → Агент (7,5% комиссия) ================= */}
-        <g
-          className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-          style={{ transitionDelay: "500ms" }}
-        >
+        <g className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+           style={{ transitionDelay: "700ms" }}>
           <path
             d="M480 230 L480 110 L215 110"
             fill="none"
             stroke="hsl(43, 74%, 49%)"
             strokeWidth="2"
             markerEnd="url(#arrowHeadGold)"
+            className={`animated-path ${isAnimating ? "animate" : ""}`}
+            style={{ "--path-length": "400", animationDelay: "800ms" } as React.CSSProperties}
           />
-          <text x="300" y="100" fontSize="13" fill="hsl(43, 74%, 49%)">
+          <text x="300" y="100" fontSize="13" fill="hsl(43, 74%, 49%)"
+            className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+            style={{ transitionDelay: "1200ms" }}>
             7,5% комиссия агента
           </text>
         </g>
@@ -149,6 +217,8 @@ const InteractionDiagram = () => {
               stroke="rgba(255,255,255,0.5)"
               strokeWidth="1.5"
               markerEnd="url(#arrowHeadWhite)"
+              className={`animated-line ${isAnimating ? "animate" : ""}`}
+              style={{ "--line-length": "250", animationDelay: `${900 + i * 100}ms` } as React.CSSProperties}
             />
           </g>
         ))}
@@ -166,24 +236,30 @@ const InteractionDiagram = () => {
         </g>
 
         {/* ================= Стрелка от Финомен к Банку с наилучшим предложением ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "850ms" }}>
+        <g className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+           style={{ transitionDelay: "1300ms" }}>
           <line x1="480" y1="390" x2="480" y2="475"
             stroke="rgba(255,255,255,0.6)" strokeWidth="1.5"
-            markerEnd="url(#arrowHeadWhite)" strokeDasharray="5,3" />
+            markerEnd="url(#arrowHeadWhite)" strokeDasharray="5,3"
+            className={`animated-line ${isAnimating ? "animate" : ""}`}
+            style={{ "--line-length": "90", animationDelay: "1400ms" } as React.CSSProperties} />
         </g>
 
         {/* ================= Г-образная стрелка Клиент → Банк (оплата) ================= */}
-        <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100" : "opacity-0"}`}
-           style={{ transitionDelay: "1000ms" }}>
+        <g className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+           style={{ transitionDelay: "1500ms" }}>
           <path
             d="M130 370 L130 520 L375 520"
             fill="none"
             stroke="rgba(255,255,255,0.8)"
             strokeWidth="2"
             markerEnd="url(#arrowHeadWhite)"
+            className={`animated-path ${isAnimating ? "animate" : ""}`}
+            style={{ "--path-length": "400", animationDelay: "1600ms" } as React.CSSProperties}
           />
-          <text x="145" y="510" fontSize="13" fill="rgba(255,255,255,0.7)">
+          <text x="145" y="510" fontSize="13" fill="rgba(255,255,255,0.7)"
+            className={`transition-opacity duration-500 ${isAnimating ? "opacity-100" : "opacity-0"}`}
+            style={{ transitionDelay: "2000ms" }}>
             оплата
           </text>
         </g>
