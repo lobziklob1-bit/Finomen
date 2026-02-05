@@ -43,20 +43,20 @@ const AdvantagesSection = () => {
           </div>
         </ScrollAnimation>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto equal-height-cards">
           {advantages.map((advantage, index) => (
-            <ScrollAnimation key={advantage.title} delay={index * 100} className="h-full">
-              <div className="group relative h-full">
-                <div className="glass-card p-8 h-full text-center hover:bg-primary/5 transition-all duration-500 group-hover:scale-105 flex flex-col">
+            <ScrollAnimation key={advantage.title} delay={index * 100} className="h-full flex">
+              <div className="group relative h-full w-full flex">
+                <div className="glass-card p-8 h-full w-full text-center hover:bg-primary/5 transition-all duration-500 group-hover:scale-105 flex flex-col">
                   {/* Icon container with glow */}
-                  <div className="relative mx-auto mb-6 w-16 h-16">
+                  <div className="relative mx-auto mb-6 w-16 h-16 flex-shrink-0">
                     <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="relative w-16 h-16 rounded-full golden-glass-icon flex items-center justify-center">
                       <advantage.icon className="w-8 h-8 text-primary-foreground" />
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="text-lg font-semibold mb-3 text-foreground group-hover:text-primary transition-colors flex-shrink-0">
                     {advantage.title}
                   </h3>
                   <p className="text-muted-foreground text-sm leading-relaxed flex-grow">
