@@ -52,8 +52,8 @@ const ProcessSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto items-stretch equal-height-cards">
           {steps.map((step, index) => (
-            <ScrollAnimation key={step.number} delay={index * 150} className="h-full">
-              <div className="relative group h-full flex flex-col">
+            <ScrollAnimation key={step.number} delay={index * 150} className="h-full flex">
+              <div className="relative group h-full w-full flex flex-col">
                 {/* Connector line for desktop */}
                 {index < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-10 left-[60%] w-full h-px bg-gradient-to-r from-primary/30 to-transparent" />

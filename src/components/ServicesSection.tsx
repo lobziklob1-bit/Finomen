@@ -46,9 +46,9 @@ const ServicesSection = () => {
           </div>
         </ScrollAnimation>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto equal-height-cards">
           {services.map((service, index) => (
-            <ScrollAnimation key={service.title} delay={index * 100}>
+            <ScrollAnimation key={service.title} delay={index * 100} className="h-full flex">
               <div
                 className="glass-card p-8 group hover:scale-[1.02] transition-all duration-500 h-full"
               >
