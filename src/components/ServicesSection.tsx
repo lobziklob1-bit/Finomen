@@ -31,8 +31,8 @@ const services = [
 const ServicesSection = () => {
   return (
     <section id="services" className="py-24 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[150px]" />
+      {/* Background decoration - reduced blur on mobile */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[80px] md:blur-[150px]" />
       
       <div className="container mx-auto px-4 relative z-10">
         <ScrollAnimation>

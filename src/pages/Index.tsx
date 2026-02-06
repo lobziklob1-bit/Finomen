@@ -1,11 +1,13 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import ServicesSection from "@/components/ServicesSection";
-import ProcessSection from "@/components/ProcessSection";
-import AdvantagesSection from "@/components/AdvantagesSection";
-import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+
+const ServicesSection = lazy(() => import("@/components/ServicesSection"));
+const ProcessSection = lazy(() => import("@/components/ProcessSection"));
+const AdvantagesSection = lazy(() => import("@/components/AdvantagesSection"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
 
 const Index = () => {
   return (
@@ -13,13 +15,17 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <ServicesSection />
-        <ProcessSection />
-        <AdvantagesSection />
-        <AboutSection />
-        <ContactSection />
+        <Suspense fallback={<div className="min-h-[200px]" />}>
+          <ServicesSection />
+          <ProcessSection />
+          <AdvantagesSection />
+          <AboutSection />
+          <ContactSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

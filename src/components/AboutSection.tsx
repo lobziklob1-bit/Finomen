@@ -12,9 +12,9 @@ const highlights = [
 const AboutSection = () => {
   return (
     <section id="about" className="py-24 bg-gradient-dark relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[200px]" />
+      {/* Background decoration - hidden on mobile for performance */}
+      <div className="absolute inset-0 opacity-30 hidden sm:block">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] md:blur-[200px]" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -24,7 +24,7 @@ const AboutSection = () => {
             <ScrollAnimation direction="left">
               <div className="flex justify-center lg:justify-start">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-primary/10 rounded-full blur-[80px] animate-pulse-glow" />
+                  <div className="absolute inset-0 bg-primary/10 rounded-full blur-[40px] md:blur-[80px] animate-pulse-glow" />
                   <div className="glass-card p-12 rounded-3xl">
                     <img
                       src={logo}
