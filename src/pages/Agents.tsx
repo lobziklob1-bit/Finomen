@@ -138,10 +138,10 @@ const Agents = () => {
             </h2>
           </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto equal-height-cards">
             {processSteps.map((item, index) => (
-              <ScrollAnimation key={item.step} direction="up" delay={index * 100}>
-                <div className="glass-card p-8 h-full flex gap-6 items-start group hover:scale-[1.02] transition-transform duration-300">
+              <ScrollAnimation key={item.step} direction="up" delay={index * 100} className="h-full flex">
+                <div className="glass-card p-8 h-full w-full flex gap-6 items-start group hover:scale-[1.02] transition-transform duration-300">
                   <div className="golden-glass-icon w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0">
                     <span className="text-xl font-bold text-background">{item.step}</span>
                   </div>
@@ -200,10 +200,10 @@ const Agents = () => {
             </p>
           </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto equal-height-cards">
             {/* Client Benefits */}
-            <ScrollAnimation direction="up" delay={100}>
-              <div className="glass-card p-8 h-full">
+            <ScrollAnimation direction="up" delay={100} className="h-full flex">
+              <div className="glass-card p-8 h-full w-full">
                 <div className="golden-glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
                   <Handshake className="w-7 h-7 text-background" />
                 </div>
@@ -225,8 +225,8 @@ const Agents = () => {
             </ScrollAnimation>
 
             {/* Agent Benefits */}
-            <ScrollAnimation direction="up" delay={200}>
-              <div className="glass-card p-8 h-full border-primary/30">
+            <ScrollAnimation direction="up" delay={200} className="h-full flex">
+              <div className="glass-card p-8 h-full w-full border-primary/30">
                 <div className="golden-glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
                   <Users className="w-7 h-7 text-background" />
                 </div>
@@ -248,8 +248,8 @@ const Agents = () => {
             </ScrollAnimation>
 
             {/* Bank Benefits */}
-            <ScrollAnimation direction="up" delay={300}>
-              <div className="glass-card p-8 h-full">
+            <ScrollAnimation direction="up" delay={300} className="h-full flex">
+              <div className="glass-card p-8 h-full w-full">
                 <div className="golden-glass-icon w-14 h-14 rounded-2xl flex items-center justify-center mb-6">
                   <Building2 className="w-7 h-7 text-background" />
                 </div>

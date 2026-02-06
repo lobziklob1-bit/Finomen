@@ -5,6 +5,7 @@ const InteractionDiagram = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
   const hasAnimated = useRef(false);
+  const [animKey, setAnimKey] = useState(0);
 
   useEffect(() => {
     if (isVisible && !hasAnimated.current) {
@@ -13,9 +14,18 @@ const InteractionDiagram = () => {
     }
   }, [isVisible]);
 
+  const handleFinomenClick = () => {
+    setIsAnimating(false);
+    // Force re-render by changing key, then restart
+    setTimeout(() => {
+      setAnimKey(prev => prev + 1);
+      setIsAnimating(true);
+    }, 50);
+  };
+
   return (
     <div ref={ref} className="w-full max-w-5xl mx-auto">
-      <svg viewBox="0 0 1000 650" className="w-full h-auto" style={{ minHeight: "500px" }}>
+      <svg key={animKey} viewBox="0 0 1000 650" className="w-full h-auto" style={{ minHeight: "500px" }}>
         <defs>
           <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="hsl(43, 74%, 49%)" />
@@ -110,11 +120,13 @@ const InteractionDiagram = () => {
 
         {/* ================= ФИНОМЕН (центр, на линии с клиентом, сдвинут правее) ================= */}
         <g className={`transition-all duration-1000 ${isAnimating ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}
-           style={{ transitionDelay: "300ms" }}>
+           style={{ transitionDelay: "300ms", cursor: "pointer" }}
+           onClick={handleFinomenClick}>
           <rect x="380" y="230" width="200" height="160" rx="20"
-            fill="url(#goldGradient)" />
+            fill="url(#goldGradient)" className="hover:brightness-110 transition-all" />
           <text x="480" y="295" textAnchor="middle" fontSize="36">📈</text>
           <text x="480" y="345" textAnchor="middle" fontSize="24" fontWeight="700">ФИНОМЕН</text>
+          <text x="480" y="405" textAnchor="middle" fontSize="11" fill="hsl(222, 47%, 6%)" opacity="0.6">нажмите для повтора</text>
         </g>
 
         {/* ================= Г-образная стрелка Агент → Клиент (рекомендация) ================= */}
