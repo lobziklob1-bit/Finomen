@@ -86,8 +86,8 @@ const ContactSection = () => {
 
   return (
     <section id="contacts" className="py-24 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[200px]" />
+      {/* Background glow - reduced on mobile */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[80px] md:blur-[200px] hidden sm:block" />
 
       <div className="container mx-auto px-4 relative z-10">
         <ScrollAnimation>

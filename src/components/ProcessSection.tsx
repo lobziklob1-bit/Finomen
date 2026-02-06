@@ -35,8 +35,8 @@ const steps = [
 const ProcessSection = () => {
   return (
     <section id="process" className="py-24 bg-gradient-dark relative overflow-hidden">
-      {/* Decorative line */}
-      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent hidden lg:block" />
+      {/* Decorative line - desktop only */}
+      <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent hidden lg:block will-change-auto" />
       
       <div className="container mx-auto px-4 relative z-10">
         <ScrollAnimation>

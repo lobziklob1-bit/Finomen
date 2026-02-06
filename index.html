@@ -11,6 +11,10 @@
     <meta property="og:type" content="website" />
     <meta name="yandex-verification" content="05af699e0a7fdec4" />
     <link rel="icon" type="image/png" href="/favicon.ico" />
+    <link rel="preload" href="/fonts/patriciana.otf" as="font" type="font/opentype" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'" />
     <style>
       @font-face {
         font-family: 'Patriciana';
@@ -19,6 +23,9 @@
         font-style: normal;
         font-display: swap;
       }
+      /* Critical inline styles for instant render */
+      body { background: hsl(222, 47%, 6%); color: hsl(0, 0%, 98%); margin: 0; }
+      #root { min-height: 100vh; }
     </style>
   </head>
   <body>

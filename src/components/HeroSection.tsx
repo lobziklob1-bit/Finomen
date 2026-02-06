@@ -18,13 +18,16 @@ const HeroSection = () => {
           src={heroBg}
           alt=""
           className="w-full h-full object-cover"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
+      {/* Decorative elements - simplified on mobile */}
+      <div className="absolute top-1/4 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[60px] md:blur-[120px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-primary/5 rounded-full blur-[60px] md:blur-[150px] hidden sm:block" />
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 py-20">
