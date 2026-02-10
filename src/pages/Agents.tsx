@@ -10,6 +10,10 @@ const Agents = () => {
   const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       if (parallaxRef.current) {
         const scrolled = window.scrollY;
