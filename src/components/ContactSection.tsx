@@ -52,7 +52,7 @@ const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-telegram', {
+      const { data, error } = await supabase.functions.invoke('send-email', {
         body: {
           name: name.trim(),
           phone: phone.trim(),
