@@ -1,10 +1,19 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-import { SmtpClient } from "https://deno.land/x/smtp@v0.7.0/mod.ts";
+import nodemailer from "npm:nodemailer@6.9.10";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -14,7 +23,6 @@ serve(async (req) => {
   try {
     const { name, phone, comment, captchaAnswer, captchaExpected } = await req.json();
 
-    // Validate captcha
     if (captchaAnswer !== captchaExpected) {
       return new Response(
         JSON.stringify({ error: 'Неверный ответ на капчу' }),
@@ -22,7 +30,6 @@ serve(async (req) => {
       );
     }
 
-    // Validate phone
     if (!phone || phone.trim().length < 5) {
       return new Response(
         JSON.stringify({ error: 'Введите номер телефона' }),
@@ -53,24 +60,22 @@ serve(async (req) => {
       </table>
     `;
 
-    const client = new SmtpClient();
-
-    await client.connectTLS({
-      hostname: "smtp.yandex.ru",
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.yandex.ru',
       port: 465,
-      username: emailAddress,
-      password: smtpPassword,
+      secure: true,
+      auth: {
+        user: emailAddress,
+        pass: smtpPassword,
+      },
     });
 
-    await client.send({
-      from: emailAddress,
+    await transporter.sendMail({
+      from: `"Финомен - Заявка" <${emailAddress}>`,
       to: emailAddress,
-      subject: `Новая заявка с сайта — ${escapeHtml(name || 'Без имени')}`,
-      content: "text/html",
+      subject: `Новая заявка с сайта — ${name || 'Без имени'}`,
       html: htmlBody,
     });
-
-    await client.close();
 
     return new Response(
       JSON.stringify({ success: true }),
@@ -85,12 +90,3 @@ serve(async (req) => {
     );
   }
 });
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
